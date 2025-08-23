@@ -1,1 +1,9 @@
 venv/
+# Python ignores
+__pycache__/
+*.pyc
+.env
+test.py
+# IDE ignores
+.env/
+.vscode/
