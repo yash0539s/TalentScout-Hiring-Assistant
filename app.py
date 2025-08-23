@@ -2,7 +2,7 @@ import streamlit as st
 from chatbot import HiringAssistant
 
 st.set_page_config(page_title="TalentScout Assistant", page_icon="🤖", layout="centered")
-st.title("🤖 TalentScout - Hiring Assistant")
+st.title(" TalentScout - Hiring Assistant")
 st.write("Welcome! I will guide you through an initial screening process.")
 
 if "assistant" not in st.session_state:
