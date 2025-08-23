@@ -5,18 +5,20 @@ from chatbot import HiringAssistant
 # Page config
 st.set_page_config(page_title="TalentScout Assistant", page_icon="🤖", layout="centered")
 
-# CSS for chat style
+# CSS for chat style with dynamic width
 st.markdown("""
 <style>
 .chat-message {
+    display: inline-block; /* Box width fits content */
     border-radius: 12px;
     padding: 12px 18px;
     margin: 10px 0;
-    max-width: 75%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
     line-height: 1.5;
     transition: all 0.3s ease-in-out;
+    max-width: 80%; /* Prevents overly wide messages */
+    word-wrap: break-word; /* Wrap long words */
 }
 
 /* User messages */
@@ -72,6 +74,7 @@ def type_text(message, delay=0.02):
     displayed_text = ""
     for char in message:
         displayed_text += char
+        # Use div without max-width restriction (handled by CSS)
         placeholder.markdown(f'<div class="chat-message assistant-message">{displayed_text}</div>', unsafe_allow_html=True)
         time.sleep(delay)
     return placeholder
@@ -94,11 +97,8 @@ if user_input:
     # Get assistant reply
     reply = st.session_state.assistant.chat(user_input)
 
-    # Make response structured
-    structured_reply = f"{reply}"
-
     # Animate assistant typing
-    type_text(structured_reply)
+    type_text(reply)
 
     # Save assistant message in history
-    st.session_state.chat_history.append({"role": "assistant", "message": structured_reply})
+    st.session_state.chat_history.append({"role": "assistant", "message": reply})
