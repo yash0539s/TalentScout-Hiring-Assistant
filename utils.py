@@ -1,31 +1,36 @@
 import json
 import os
-import requests
+from openai import OpenAI
+from dotenv import load_dotenv
 
-# Hugging Face API token -> get from https://huggingface.co/settings/tokens
-HF_API_KEY = os.getenv("HF_API_KEY")
-API_URL = "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2"
+# Load environment variables from .env file
+load_dotenv()
 
-headers = {"Authorization": f"Bearer {HF_API_KEY}"}
+# OpenAI API key -> stored in .env as: OPENAI_API_KEY=your_key_here
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 def call_llm(prompt, user_input=None, candidate_data=None):
     """
-    Calls Hugging Face Inference API with Mistral-7B-Instruct.
+    Calls OpenAI API (GPT model).
     Builds context-aware prompts for the chatbot.
     """
     text = prompt
     if user_input:
         text += f"\nUser: {user_input}\nAssistant:"
 
-    response = requests.post(API_URL, headers=headers, json={"inputs": text})
-
     try:
-        output = response.json()
-        # Hugging Face returns [{"generated_text": "..."}]
-        if isinstance(output, list) and "generated_text" in output[0]:
-            return output[0]["generated_text"].split("Assistant:")[-1].strip()
-        else:
-            return f" Unexpected response: {output}"
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",   # safer to use the latest if you have access
+            messages=[
+                {"role": "system", "content": prompt},
+                {"role": "user", "content": user_input or ""}
+            ],
+            max_tokens=300,
+            temperature=0.7
+        )
+
+        return response.choices[0].message.content.strip()
     except Exception as e:
         return f" Error: {e}"
 
