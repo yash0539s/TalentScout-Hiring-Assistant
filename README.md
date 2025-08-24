@@ -35,8 +35,6 @@ Key features:
 4. **UI/UX**
 
    * Streamlit-based chat interface
-   * Sidebar summary of collected candidate info
-   * Restart conversation functionality
 
 ---
 
@@ -85,7 +83,7 @@ streamlit run app.py
    * Enter your tech stack
    * Receive technical questions
 
-3. Optional: Use **Restart Conversation** button to start over.
+
 
 ---
 
@@ -111,7 +109,6 @@ streamlit run app.py
 * **Maintaining conversation context:** Solved by using `self.stage` in `HiringAssistant`.
 * **Handling multi-tech stack:** Split input by commas and looped through each tech for question generation.
 * **Data privacy:** Hashing emails and phone numbers before saving.
-* **Streamlit UI:** Added sidebar summary and restart button for better UX.
 
 ---
 
@@ -125,4 +122,4 @@ streamlit run app.py
 
 ## Contact
 
-For any questions regarding the project, contact **\[Your Name / Email]**.
+For any questions regarding the project, contact **\[Yash malviya / yashmalviya9890@gmail.com]**.
