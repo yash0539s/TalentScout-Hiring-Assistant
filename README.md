@@ -1,4 +1,4 @@
-# TalentScout - AI Hiring Assistant 🤖
+# TalentScout - AI Hiring Assistant 
 
 ## Project Overview
 
