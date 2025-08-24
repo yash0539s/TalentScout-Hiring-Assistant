@@ -14,7 +14,6 @@ If user provides multiple details at once, extract all you can.
 Keep responses polite and concise. 
 Exit when user types 'quit', 'exit', or 'bye'.
 """
-
 TECH_QUESTION_PROMPT = """
 You are a technical interviewer. 
 The candidate has declared this tech stack: {tech_stack}.
