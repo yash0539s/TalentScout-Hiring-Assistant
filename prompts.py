@@ -1,3 +1,4 @@
+# prompts.py
 COLLECT_INFO_PROMPT = """
 You are TalentScout, an AI hiring assistant. 
 Your goal is to collect essential candidate details step by step:
