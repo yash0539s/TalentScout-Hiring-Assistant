@@ -2,7 +2,6 @@ import streamlit as st
 import time
 from chatbot import HiringAssistant
 
-# Page config
 st.set_page_config(page_title="TalentScout Assistant", page_icon="🤖", layout="centered")
 
 # CSS for chat style with dynamic width
